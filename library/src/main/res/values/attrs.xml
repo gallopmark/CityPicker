@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--页面背景-->
+    <attr name="cpBackground" format="color|reference" />
+
+    <!--取消文字大小-->
+    <attr name="cpCancelTextSize" format="dimension|reference" />
+    <!--取消文字颜色-->
+    <attr name="cpCancelTextColor" format="color|reference" />
+
+    <!--清除按钮icon-->
+    <attr name="cpClearTextIcon" format="reference" />
+    <!--搜索框文字大小-->
+    <attr name="cpSearchTextSize" format="dimension|reference" />
+    <!--搜索框文字颜色-->
+    <attr name="cpSearchTextColor" format="color|reference" />
+    <!--搜索框提示文字-->
+    <attr name="cpSearchHintText" format="string|reference" />
+    <!--搜索框提示文字颜色-->
+    <attr name="cpSearchHintTextColor" format="color|reference" />
+    <!--搜索框光标-->
+    <attr name="cpSearchCursorDrawable" format="reference" />
+
+    <!--列表item文字大小-->
+    <attr name="cpListItemTextSize" format="dimension|reference" />
+    <!--列表item文字颜色-->
+    <attr name="cpListItemTextColor" format="color|reference" />
+    <!--列表item高度-->
+    <attr name="cpListItemHeight" format="dimension|reference" />
+
+    <!--缺省图-->
+    <attr name="cpEmptyIcon" format="reference" />
+    <!--缺省图宽度-->
+    <attr name="cpEmptyIconWidth" format="dimension|reference" />
+    <!--缺省图高度-->
+    <attr name="cpEmptyIconHeight" format="dimension|reference" />
+    <!--缺省提示文字-->
+    <attr name="cpEmptyText" format="string|reference" />
+    <!--缺省文字大小-->
+    <attr name="cpEmptyTextSize" format="dimension|reference" />
+    <!--缺省文字颜色-->
+    <attr name="cpEmptyTextColor" format="color|reference" />
+
+    <!--网格布局背景-热门城市等-->
+    <attr name="cpGridItemBackground" format="color|reference" />
+    <!--网格布局item间隙-->
+    <attr name="cpGridItemSpace" format="reference" />
+
+    <!--悬浮部分高度-->
+    <attr name="cpSectionHeight" format="reference" />
+    <!--悬浮部分文字大小-->
+    <attr name="cpSectionTextSize" format="reference" />
+    <!--悬浮部分文字颜色-->
+    <attr name="cpSectionTextColor" format="reference" />
+    <!--悬浮部分背景-->
+    <attr name="cpSectionBackground" format="reference" />
+
+    <!--字母导航条文字大小-->
+    <attr name="cpIndexBarTextSize" format="reference" />
+    <!--字母导航条常规文字颜色-->
+    <attr name="cpIndexBarNormalTextColor" format="reference" />
+    <!--字母导航条选中时文字颜色-->
+    <attr name="cpIndexBarSelectedTextColor" format="reference" />
+
+    <!--中间提示框-->
+    <attr name="cpOverlayWidth" format="dimension|reference" /> <!--宽度-->
+    <attr name="cpOverlayHeight" format="dimension|reference" /> <!--高度-->
+    <attr name="cpOverlayTextSize" format="dimension|reference" /> <!--文字大小-->
+    <attr name="cpOverlayTextColor" format="color|reference" /> <!--文字颜色-->
+    <attr name="cpOverlayBackground" format="color|reference" /> <!--背景-->
+</resources>
