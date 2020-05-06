@@ -59,11 +59,19 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         this.mGridSpanCount = spanCount;
     }
 
+    //更新热门城市
+    public void updateHotData(List<HotCity> hotData) {
+        this.mHotData = hotData;
+        notifyDataSetChanged();
+    }
+
+    //更新数据
     public void updateData(List<City> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
 
+    //更新定位城市
     public void updateLocateState(LocatedCity location, int state) {
         mData.remove(0);
         mData.add(0, location);
@@ -196,9 +204,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         }
         //热门城市
         if (holder instanceof HotViewHolder) {
-            final int pos = holder.getAdapterPosition();
-            final City data = mData.get(pos);
-            if (data == null) return;
+            if (mHotData == null || mHotData.isEmpty()) return;
             GridListAdapter adapter = new GridListAdapter(mContext, mHotData);
             adapter.setInnerListener(mInnerListener);
             ((HotViewHolder) holder).mRecyclerView.setAdapter(adapter);
