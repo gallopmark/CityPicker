@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
-import android.text.TextUtils;
 
 
 import java.io.File;
@@ -14,9 +13,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
+import pony.xcode.citypicker.CityComparator;
 import pony.xcode.citypicker.model.City;
 
 
@@ -107,17 +106,5 @@ public class DBManager {
         CityComparator comparator = new CityComparator();
         Collections.sort(result, comparator);
         return result;
-    }
-
-    /**
-     * sort by a-z
-     */
-    private static class CityComparator implements Comparator<City> {
-        @Override
-        public int compare(City lhs, City rhs) {
-            String a = TextUtils.isEmpty(lhs.getPinyin()) ? "" : lhs.getPinyin().substring(0, 1);
-            String b = TextUtils.isEmpty(rhs.getPinyin()) ? "" : rhs.getPinyin().substring(0, 1);
-            return a.compareTo(b);
-        }
     }
 }
