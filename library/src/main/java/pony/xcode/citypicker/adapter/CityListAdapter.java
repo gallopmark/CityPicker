@@ -59,6 +59,13 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         this.mGridSpanCount = spanCount;
     }
 
+    //更新所有城市数据和热门城市数据
+    public void update(List<City> data, List<HotCity> hotData) {
+        this.mHotData = hotData;
+        this.mData = data;
+        notifyDataSetChanged();
+    }
+
     //更新热门城市
     public void updateHotData(List<HotCity> hotData) {
         this.mHotData = hotData;
