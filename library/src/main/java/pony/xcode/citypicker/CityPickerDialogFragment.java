@@ -37,7 +37,6 @@ import pony.xcode.citypicker.adapter.InnerListener;
 import pony.xcode.citypicker.adapter.OnPickListener;
 import pony.xcode.citypicker.adapter.decoration.DividerItemDecoration;
 import pony.xcode.citypicker.adapter.decoration.SectionItemDecoration;
-import pony.xcode.citypicker.db.DBManager;
 import pony.xcode.citypicker.model.City;
 import pony.xcode.citypicker.model.HotCity;
 import pony.xcode.citypicker.model.LocateState;
@@ -59,7 +58,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
     private List<HotCity> mHotCities; //热门城市
     private List<City> mResults; //查询结果集
 
-    private DBManager dbManager;
+    private CityManager mManager;
 
     private int mWindowHeight;
     private int mWindowWidth;
@@ -229,8 +228,8 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             locateState = LocateState.SUCCESS;
         }
 
-        dbManager = new DBManager(mContext);
-        mAllCities = dbManager.getAllCities();
+        mManager = new CityManager(mContext);
+        mAllCities = mManager.getAllCities();
         mAllCities.add(0, mLocatedCity);
         mAllCities.add(1, new HotCity("热门城市", "未知", "0"));
         mResults = mAllCities;
@@ -291,7 +290,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             mClearAllBtn.setVisibility(View.VISIBLE);
             //开始数据库查找
-            mResults = dbManager.searchCity(keyword);
+            mResults = mManager.searchCity(keyword);
             ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(mResults);
             if (mResults == null || mResults.isEmpty()) {
                 mEmptyView.setVisibility(View.VISIBLE);
