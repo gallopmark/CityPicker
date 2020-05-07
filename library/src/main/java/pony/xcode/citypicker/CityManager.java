@@ -6,12 +6,13 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,34 +31,39 @@ public class CityManager {
         this.mContext = context;
     }
 
-    private String toJson() {
+    private String toJson() throws IOException {
         //将json数据变成字符串
         StringBuilder sb = new StringBuilder();
-        try {
-            //获取assets资源管理器
-            AssetManager assetManager = mContext.getAssets();
-            //通过管理器打开文件并读取
-            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open(FILE_NAME)));
-            String line;
-            while ((line = bf.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        //获取assets资源管理器
+        AssetManager assetManager = mContext.getAssets();
+        //通过管理器打开文件并读取
+        BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open(FILE_NAME)));
+        String line;
+        while ((line = bf.readLine()) != null) {
+            sb.append(line);
         }
+        bf.close();
         return sb.toString();
     }
 
-    //获取所有的城市
+    //获取所有的城市（耗时操作，建议放到子线程中，避免线程堵塞）
     public List<City> getAllCities() {
-        String json = toJson();
-        if (TextUtils.isEmpty(json)) return new ArrayList<>();
         List<City> result = new ArrayList<>();
-        Type listType = new TypeToken<List<City>>() {
-        }.getType();
-        List<City> list = new Gson().fromJson(json, listType);
-        if (list != null && !list.isEmpty()) {
-            result.addAll(list);
+        try {
+            String json = toJson();
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                String code = obj.optString("code");
+                String name = obj.optString("name");
+                String pinyin = obj.optString("pinyin");
+                String province = obj.optString("province");
+                result.add(new City(name, province, pinyin, code));
+            }
+        } catch (IOException e) {
+            //读取assets的json文件异常
+        } catch (Exception e) {
+            //json 解析异常
         }
         Collections.sort(result, new CityComparator());
         return result;

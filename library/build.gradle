@@ -22,5 +22,4 @@ android {
 dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
     compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
-    compileOnly 'com.google.code.gson:gson:2.8.6'
 }
